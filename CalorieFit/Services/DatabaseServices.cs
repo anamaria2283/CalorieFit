@@ -99,4 +99,37 @@ public class DatabaseService
             await _database.DeleteAsync(item);
         }
     }
+
+    public async Task<(int FoodEntries, int WaterLogs)> GetDataCountsAsync()
+    {
+        await InitAsync();
+        return (await _database!.Table<FoodEntry>().CountAsync(), await _database.Table<WaterLog>().CountAsync());
+    }
+
+    public async Task<DatabaseSnapshot> GetDataSnapshotAsync()
+    {
+        await InitAsync();
+        return new DatabaseSnapshot
+        {
+            ExportedAt = DateTime.Now,
+            Profile = await GetProfileAsync(),
+            FoodEntries = await _database!.Table<FoodEntry>().ToListAsync(),
+            WaterLogs = await _database.Table<WaterLog>().ToListAsync()
+        };
+    }
+
+    public async Task ClearTrackingDataAsync()
+    {
+        await InitAsync();
+        await _database!.DeleteAllAsync<FoodEntry>();
+        await _database.DeleteAllAsync<WaterLog>();
+    }
+}
+
+public class DatabaseSnapshot
+{
+    public DateTime ExportedAt { get; set; }
+    public UserProfile Profile { get; set; } = new();
+    public List<FoodEntry> FoodEntries { get; set; } = new();
+    public List<WaterLog> WaterLogs { get; set; } = new();
 }
