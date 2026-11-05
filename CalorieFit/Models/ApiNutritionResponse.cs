@@ -31,4 +31,6 @@ public class MockRecipe
     public int Calories { get; set; }
     public string CookingTime { get; set; } = string.Empty;
     public string ImageUrl { get; set; } = "dotnet_bot.png";
+    public string Ingredients { get; set; } = string.Empty;
+    public string Instructions { get; set; } = string.Empty;
 }
