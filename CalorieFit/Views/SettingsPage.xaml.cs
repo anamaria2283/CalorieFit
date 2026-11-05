@@ -40,7 +40,7 @@ public partial class SettingsPage : ContentPage
     private async Task RefreshDatabaseStatusAsync()
     {
         var counts = await _dbService.GetDataCountsAsync();
-        DatabaseStatusLabel.Text = $"Profil: 1 | Mese: {counts.FoodEntries} | Apă: {counts.WaterLogs}";
+        DatabaseStatusLabel.Text = $"Profil: 1 | Mese: {counts.FoodEntries} | Apă: {counts.WaterLogs} | Note: {counts.DayReflections}";
     }
 
     private async void OnResetPreferencesClicked(object sender, EventArgs e)
@@ -76,7 +76,7 @@ public partial class SettingsPage : ContentPage
 
     private async void OnClearDataClicked(object sender, EventArgs e)
     {
-        bool confirm = await DisplayAlert("Ștergere jurnal", "Doriți să ștergeți mesele și înregistrările de apă? Profilul va fi păstrat.", "Da", "Nu");
+        bool confirm = await DisplayAlert("Ștergere jurnal", "Doriți să ștergeți mesele, înregistrările de apă și notele zilnice? Profilul va fi păstrat.", "Da", "Nu");
         if (!confirm)
         {
             return;
@@ -84,7 +84,7 @@ public partial class SettingsPage : ContentPage
 
         await _dbService.ClearTrackingDataAsync();
         await RefreshDatabaseStatusAsync();
-        await DisplayAlert("Gata", "Jurnalul alimentar și apa au fost șterse.", "OK");
+        await DisplayAlert("Gata", "Jurnalul alimentar, apa și notele zilnice au fost șterse.", "OK");
     }
 
     private async void OnAboutClicked(object sender, EventArgs e)

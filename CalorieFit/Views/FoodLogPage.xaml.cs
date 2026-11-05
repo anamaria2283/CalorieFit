@@ -10,6 +10,7 @@ namespace CalorieFit.Views;
 public partial class FoodLogPage : ContentPage
 {
     private readonly DatabaseService _dbService;
+    private bool? _sortCaloriesDescending;
 
     public FoodLogPage(DatabaseService dbService)
     {
@@ -28,13 +29,27 @@ public partial class FoodLogPage : ContentPage
     {
         var selectedDate = LogDatePicker.Date ?? DateTime.Today;
         var items = await _dbService.GetFoodEntriesByDateAsync(selectedDate);
-        // var items = await _dbService.GetFoodEntriesByDateAsync(LogDatePicker.Date);
+        if (_sortCaloriesDescending is true)
+        {
+            items = items.OrderByDescending(item => item.Calories).ToList();
+        }
+        else if (_sortCaloriesDescending is false)
+        {
+            items = items.OrderBy(item => item.Calories).ToList();
+        }
+
         FoodCollectionView.ItemsSource = items;
         SummaryLabel.Text = $"Total: {items.Sum(x => x.Calories):F0} kcal | Proteine: {items.Sum(x => x.ProteinGrams):F0}g";
     }
 
     private async void OnDateSelected(object sender, DateChangedEventArgs e) => await RefreshList();
-    private async void OnFilterClicked(object sender, EventArgs e) => await RefreshList();
+
+    private async void OnSortCaloriesClicked(object sender, EventArgs e)
+    {
+        _sortCaloriesDescending = _sortCaloriesDescending != true;
+        SortCaloriesButton.Text = _sortCaloriesDescending.Value ? "Calorii ↓" : "Calorii ↑";
+        await RefreshList();
+    }
 
     private async void OnDeleteEntryClicked(object sender, EventArgs e)
     {

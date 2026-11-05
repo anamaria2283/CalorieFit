@@ -30,7 +30,7 @@
                                 <Label Text="{Binding CarbsG, StringFormat='Carbohidrați: {0:F1} g'}" FontSize="12" />
                                 <Label Text="{Binding FatG, StringFormat='Grăsimi: {0:F1} g'}" FontSize="12" />
                             </VerticalStackLayout>
-                            <Button Grid.Column="1" Text="+ 100 g în jurnal" Clicked="OnAddApiItemToDb" CommandParameter="{Binding .}" HeightRequest="40" BackgroundColor="#388E3C" TextColor="White" />
+                            <Button Grid.Column="1" Text="Adaugă cantitate" Clicked="OnAddApiItemToDb" CommandParameter="{Binding .}" HeightRequest="40" BackgroundColor="#388E3C" TextColor="White" />
                         </Grid>
                     </Border>
                 </DataTemplate>

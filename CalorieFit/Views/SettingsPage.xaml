@@ -20,7 +20,7 @@
             <Label Text="Baza de date locală" FontSize="18" FontAttributes="Bold" />
             <Label x:Name="DatabaseStatusLabel" Text="Se încarcă..." />
             <Button Text="Exportă datele în format JSON" Clicked="OnExportDataClicked" BackgroundColor="#2E7D32" TextColor="White" />
-            <Button Text="Șterge jurnalul alimentar și apa" Clicked="OnClearDataClicked" BackgroundColor="#C62828" TextColor="White" />
+            <Button Text="Șterge jurnalul alimentar, apa și notele" Clicked="OnClearDataClicked" BackgroundColor="#C62828" TextColor="White" />
             <Button Text="Despre CalorieFit (Echipa 15)" Clicked="OnAboutClicked" BackgroundColor="#455A64" TextColor="White" />
         </VerticalStackLayout>
     </ScrollView>

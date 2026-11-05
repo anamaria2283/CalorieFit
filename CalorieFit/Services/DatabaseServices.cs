@@ -21,6 +21,7 @@ public class DatabaseService
         await _database.CreateTableAsync<UserProfile>();
         await _database.CreateTableAsync<FoodEntry>();
         await _database.CreateTableAsync<WaterLog>();
+        await _database.CreateTableAsync<DayReflection>();
 
         // Initializare profil implicit daca baza e goala
         var profile = await _database.Table<UserProfile>().FirstOrDefaultAsync();
@@ -89,6 +90,31 @@ public class DatabaseService
         await _database!.InsertAsync(new WaterLog { Milliliters = ml, Timestamp = DateTime.Now });
     }
 
+    public async Task<DayReflection?> GetDayReflectionAsync(DateTime date)
+    {
+        await InitAsync();
+        var start = date.Date;
+        var end = start.AddDays(1);
+        return await _database!.Table<DayReflection>()
+            .Where(reflection => reflection.DateLogged >= start && reflection.DateLogged < end)
+            .FirstOrDefaultAsync();
+    }
+
+    public async Task SaveDayReflectionAsync(DayReflection reflection)
+    {
+        await InitAsync();
+        var existing = await GetDayReflectionAsync(reflection.DateLogged);
+        if (existing is null)
+        {
+            await _database!.InsertAsync(reflection);
+            return;
+        }
+
+        existing.Rating = reflection.Rating;
+        existing.Notes = reflection.Notes;
+        await _database!.UpdateAsync(existing);
+    }
+
     public async Task ResetTodayWaterAsync()
     {
         await InitAsync();
@@ -100,10 +126,13 @@ public class DatabaseService
         }
     }
 
-    public async Task<(int FoodEntries, int WaterLogs)> GetDataCountsAsync()
+    public async Task<(int FoodEntries, int WaterLogs, int DayReflections)> GetDataCountsAsync()
     {
         await InitAsync();
-        return (await _database!.Table<FoodEntry>().CountAsync(), await _database.Table<WaterLog>().CountAsync());
+        return (
+            await _database!.Table<FoodEntry>().CountAsync(),
+            await _database.Table<WaterLog>().CountAsync(),
+            await _database.Table<DayReflection>().CountAsync());
     }
 
     public async Task<DatabaseSnapshot> GetDataSnapshotAsync()
@@ -114,7 +143,8 @@ public class DatabaseService
             ExportedAt = DateTime.Now,
             Profile = await GetProfileAsync(),
             FoodEntries = await _database!.Table<FoodEntry>().ToListAsync(),
-            WaterLogs = await _database.Table<WaterLog>().ToListAsync()
+            WaterLogs = await _database.Table<WaterLog>().ToListAsync(),
+            DayReflections = await _database.Table<DayReflection>().ToListAsync()
         };
     }
 
@@ -123,6 +153,7 @@ public class DatabaseService
         await InitAsync();
         await _database!.DeleteAllAsync<FoodEntry>();
         await _database.DeleteAllAsync<WaterLog>();
+        await _database.DeleteAllAsync<DayReflection>();
     }
 }
 
@@ -132,4 +163,5 @@ public class DatabaseSnapshot
     public UserProfile Profile { get; set; } = new();
     public List<FoodEntry> FoodEntries { get; set; } = new();
     public List<WaterLog> WaterLogs { get; set; } = new();
+    public List<DayReflection> DayReflections { get; set; } = new();
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Net.Http;
 using System.Text.Json;
 using CalorieFit.Models;
@@ -61,21 +62,45 @@ public partial class FoodSearchApiPage : ContentPage
 
     private async void OnAddApiItemToDb(object sender, EventArgs e)
     {
-        if (sender is Button btn && btn.CommandParameter is ApiFoodItem item)
+        if (sender is not Button btn || btn.CommandParameter is not ApiFoodItem item)
         {
-            var entry = new FoodEntry
-            {
-                FoodName = item.Name,
-                Calories = item.Calories,
-                ProteinGrams = item.ProteinG,
-                CarbsGrams = item.CarbsG,
-                FatGrams = item.FatG,
-                MealType = "Gustare",
-                DateLogged = DateTime.Today
-            };
-
-            await _dbService.AddFoodEntryAsync(entry);
-            await DisplayAlertAsync("Adăugat", $"{item.Name} (100 g) a fost salvat în SQLite!", "OK");
+            return;
         }
+
+        var amountText = await DisplayPromptAsync(
+            "Cantitate",
+            $"Introduceți cantitatea de {item.Name} în grame:",
+            "Adaugă",
+            "Anulează",
+            keyboard: Keyboard.Numeric,
+            initialValue: "100");
+
+        if (amountText is null)
+        {
+            return;
+        }
+
+        if ((!decimal.TryParse(amountText, NumberStyles.Number, CultureInfo.CurrentCulture, out var grams)
+             && !decimal.TryParse(amountText, NumberStyles.Number, CultureInfo.InvariantCulture, out grams))
+            || grams <= 0)
+        {
+            await DisplayAlertAsync("Cantitate invalidă", "Introduceți o cantitate mai mare decât zero.", "OK");
+            return;
+        }
+
+        var multiplier = (double)(grams / 100m);
+        var entry = new FoodEntry
+        {
+            FoodName = item.Name,
+            Calories = item.Calories * multiplier,
+            ProteinGrams = item.ProteinG * multiplier,
+            CarbsGrams = item.CarbsG * multiplier,
+            FatGrams = item.FatG * multiplier,
+            MealType = "Gustare",
+            DateLogged = DateTime.Today
+        };
+
+        await _dbService.AddFoodEntryAsync(entry);
+        await DisplayAlertAsync("Adăugat", $"{item.Name} ({grams} g) a fost salvat în jurnal!", "OK");
     }
 }

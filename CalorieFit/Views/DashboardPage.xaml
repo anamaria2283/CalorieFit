@@ -24,7 +24,25 @@
                 </VerticalStackLayout>
             </Border>
 
-            <Button Text="Reîmprospătează datele" Clicked="OnRefreshClicked" BackgroundColor="#2E7D32" TextColor="White" />
+            <Border Stroke="#FFB300" StrokeShape="RoundRectangle 12" Padding="15">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Jurnalul zilei" FontAttributes="Bold" FontSize="16" />
+                    <Label x:Name="DailyReflectionSummaryLabel" Text="Încă nu ai notat ziua de azi." />
+                    <Button x:Name="DailyReflectionToggleButton" Text="Adaugă o notă despre ziua ta" Clicked="OnToggleDailyReflectionClicked" BackgroundColor="#2E7D32" TextColor="White" />
+                    <VerticalStackLayout x:Name="DailyReflectionEditor" IsVisible="False" Spacing="10">
+                        <Label Text="Cum ți-a fost ziua? Alege un scor de la 1 la 5:" />
+                        <Grid ColumnDefinitions="*,*,*,*,*" ColumnSpacing="5">
+                            <Button x:Name="Rating1Button" Grid.Column="0" Text="😞 1" CommandParameter="1" Clicked="OnRatingSelected" />
+                            <Button x:Name="Rating2Button" Grid.Column="1" Text="🙁 2" CommandParameter="2" Clicked="OnRatingSelected" />
+                            <Button x:Name="Rating3Button" Grid.Column="2" Text="😐 3" CommandParameter="3" Clicked="OnRatingSelected" />
+                            <Button x:Name="Rating4Button" Grid.Column="3" Text="🙂 4" CommandParameter="4" Clicked="OnRatingSelected" />
+                            <Button x:Name="Rating5Button" Grid.Column="4" Text="😄 5" CommandParameter="5" Clicked="OnRatingSelected" />
+                        </Grid>
+                        <Editor x:Name="DailyReflectionNotesEditor" Placeholder="Scrie câteva note despre ziua ta..." AutoSize="TextChanges" />
+                        <Button Text="Salvează nota" Clicked="OnSaveDailyReflectionClicked" BackgroundColor="#2E7D32" TextColor="White" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

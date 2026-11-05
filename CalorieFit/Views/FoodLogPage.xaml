@@ -8,7 +8,7 @@
         <HorizontalStackLayout Grid.Row="0" Spacing="10">
             <Image Source="dotnet_bot.png" WidthRequest="30" HeightRequest="30" />
             <DatePicker x:Name="LogDatePicker" DateSelected="OnDateSelected" />
-            <Button Text="Filtrează" Clicked="OnFilterClicked" />
+            <Button x:Name="SortCaloriesButton" Text="Sortează kcal ↓" Clicked="OnSortCaloriesClicked" />
         </HorizontalStackLayout>
 
         <Label Grid.Row="1" x:Name="SummaryLabel" Text="Total calorii: 0 kcal" FontAttributes="Bold" />
