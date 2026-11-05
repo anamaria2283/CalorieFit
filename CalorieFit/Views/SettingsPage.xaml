@@ -2,24 +2,25 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CalorieFit.Views.SettingsPage"
-             Title="Setări Aplicație">
+             Title="Setări &amp; Bază Date">
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <VerticalStackLayout x:Name="PageLayout" Padding="20" Spacing="15">
             <Image Source="dotnet_bot.png" HeightRequest="60" HorizontalOptions="Center" />
-            <Label Text="Setări Generale &amp; Mentenanță" FontSize="18" FontAttributes="Bold" />
+            <Label Text="Preferințe aplicație" FontSize="18" FontAttributes="Bold" />
 
             <HorizontalStackLayout Spacing="15">
                 <Label Text="Mod Întunecat (Dark Mode):" VerticalOptions="Center" />
                 <Switch x:Name="DarkModeSwitch" Toggled="OnDarkModeToggled" />
             </HorizontalStackLayout>
 
-            <Label Text="Dimensiune text interfață:" />
-            <Slider Minimum="12" Maximum="24" Value="16" />
+            <Label Text="Căutarea alimentelor folosește USDA FoodData Central." FontSize="13" />
+            <Button Text="Resetează preferințele" Clicked="OnResetPreferencesClicked" BackgroundColor="#1565C0" TextColor="White" />
 
-            <Label Text="Server API backup:" />
-            <Entry Text="https://api.caloriefit-local.internal/v1" />
-
-            <Button Text="Curățare Date Locale SQLite" Clicked="OnClearDataClicked" BackgroundColor="#C62828" TextColor="White" />
+            <BoxView HeightRequest="1" BackgroundColor="#D0D0D0" Margin="0,10" />
+            <Label Text="Baza de date locală" FontSize="18" FontAttributes="Bold" />
+            <Label x:Name="DatabaseStatusLabel" Text="Se încarcă..." />
+            <Button Text="Exportă datele în format JSON" Clicked="OnExportDataClicked" BackgroundColor="#2E7D32" TextColor="White" />
+            <Button Text="Șterge jurnalul alimentar și apa" Clicked="OnClearDataClicked" BackgroundColor="#C62828" TextColor="White" />
             <Button Text="Despre CalorieFit (Echipa 15)" Clicked="OnAboutClicked" BackgroundColor="#455A64" TextColor="White" />
         </VerticalStackLayout>
     </ScrollView>
