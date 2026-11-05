@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CalorieFit.Views.ProfilePage"
+             Title="Profil &amp; Obiective">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+            <Image Source="dotnet_bot.png" HeightRequest="70" HorizontalOptions="Center" />
+            <Label Text="Date Personale" FontSize="18" FontAttributes="Bold" />
+
+            <Label Text="Nume:" />
+            <Entry x:Name="NameEntry" Placeholder="Numele tău" />
+
+            <Label Text="Greutate (kg):" />
+            <Entry x:Name="WeightEntry" Keyboard="Numeric" />
+
+            <Label Text="Înălțime (cm):" />
+            <Entry x:Name="HeightEntry" Keyboard="Numeric" />
+
+            <Label Text="Vârstă:" />
+            <Entry x:Name="AgeEntry" Keyboard="Numeric" />
+
+            <Label Text="Nivel Activitate:" />
+            <Picker x:Name="ActivityPicker">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Sedentar</x:String>
+                        <x:String>Moderat</x:String>
+                        <x:String>Activ</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <HorizontalStackLayout Spacing="10">
+                <CheckBox x:Name="AcceptTermsCheck" IsChecked="True" />
+                <Label Text="Accept sincronizarea profilului local" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <Button Text="Calculează și Salvează Profil" Clicked="OnSaveProfileClicked" BackgroundColor="#1565C0" TextColor="White" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

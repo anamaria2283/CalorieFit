@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="CalorieFit.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:CalorieFit.Views"
+    FlyoutBehavior="Locked"
+    Title="CalorieFit">
+
+    <!-- Header vizual pentru meniul lateral -->
+    <Shell.FlyoutHeader>
+        <Grid HeightRequest="120" BackgroundColor="#2E7D32" Padding="15">
+            <VerticalStackLayout VerticalOptions="Center" Spacing="4">
+                <Image Source="dotnet_bot.png" HeightRequest="45" HorizontalOptions="Start" />
+                <Label Text="CalorieFit" FontSize="20" FontAttributes="Bold" TextColor="White" />
+                <Label Text="Echipa 15 - Monitorizare &amp; Wellness" FontSize="11" TextColor="#C8E6C9" />
+            </VerticalStackLayout>
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <!-- Toate cele 10 pagini listate direct in meniu -->
+    <FlyoutItem Title="1. Dashboard Principal" Icon="dotnet_bot.png">
+        <ShellContent ContentTemplate="{DataTemplate views:DashboardPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="2. Jurnal Alimentar (SQLite)" Icon="dotnet_bot.png">
+        <ShellContent ContentTemplate="{DataTemplate views:FoodLogPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="3. Adăugare Masă (Picker)" Icon="dotnet_bot.png">
+        <ShellContent ContentTemplate="{DataTemplate views:AddMealPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="4. Monitorizare Apă" Icon="dotnet_bot.png">
+        <ShellContent ContentTemplate="{DataTemplate views:WaterTrackerPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="5. Analiză Grafică Nutrienți" Icon="dotnet_bot.png">
+        <ShellContent ContentTemplate="{DataTemplate views:AnalyticsPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="6. Căutare Online (API REST)" Icon="dotnet_bot.png">
+        <ShellContent ContentTemplate="{DataTemplate views:FoodSearchApiPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="7. Rețete Sănătoase (JSON)" Icon="dotnet_bot.png">
+        <ShellContent ContentTemplate="{DataTemplate views:RecipeIdeasPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="8. Obiective Macronutrienți" Icon="dotnet_bot.png">
+        <ShellContent ContentTemplate="{DataTemplate views:MacroGoalsPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="9. Profil &amp; Calculator BMR" Icon="dotnet_bot.png">
+        <ShellContent ContentTemplate="{DataTemplate views:ProfilePage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="10. Setări &amp; Bază Date" Icon="dotnet_bot.png">
+        <ShellContent ContentTemplate="{DataTemplate views:SettingsPage}" />
+    </FlyoutItem>
+
+</Shell>

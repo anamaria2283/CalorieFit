@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CalorieFit.Views.AnalyticsPage"
+             Title="Reprezentare Grafică">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Image Source="dotnet_bot.png" WidthRequest="30" HeightRequest="30" />
+                <Label Text="Distribuție Macronutrienți" FontSize="18" FontAttributes="Bold" />
+            </HorizontalStackLayout>
+
+            <!-- Grafic bara custom realizat din controale MAUI Native -->
+            <Border Stroke="#B0BEC5" StrokeShape="RoundRectangle 10" Padding="15">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Proteine (g)" />
+                    <BoxView x:Name="ProteinBar" Color="#4CAF50" HeightRequest="20" WidthRequest="10" HorizontalOptions="Start" />
+
+                    <Label Text="Carbohidrați (g)" />
+                    <BoxView x:Name="CarbsBar" Color="#FF9800" HeightRequest="20" WidthRequest="10" HorizontalOptions="Start" />
+
+                    <Label Text="Grăsimi (g)" />
+                    <BoxView x:Name="FatBar" Color="#E91E63" HeightRequest="20" WidthRequest="10" HorizontalOptions="Start" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Simulează Obiectiv Zilnic (calorii):" FontAttributes="Bold" />
+            <Slider x:Name="TargetSimSlider" Minimum="1200" Maximum="3500" Value="2000" ValueChanged="OnSimTargetChanged" />
+            <Label x:Name="TargetSimLabel" Text="Obiectiv simulat: 2000 kcal" />
+
+            <Button Text="Recalculează Grafic" Clicked="OnRefreshAnalyticsClicked" BackgroundColor="#37474F" TextColor="White" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

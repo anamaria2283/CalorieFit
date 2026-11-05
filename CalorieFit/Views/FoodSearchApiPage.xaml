@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CalorieFit.Models"
+             x:Class="CalorieFit.Views.FoodSearchApiPage"
+             Title="Căutare Alimente (API)">
+    <Grid RowDefinitions="Auto, Auto, Auto, Auto, *" Padding="15" RowSpacing="10">
+        <HorizontalStackLayout Grid.Row="0" Spacing="10">
+            <Image Source="dotnet_bot.png" WidthRequest="35" HeightRequest="35" />
+            <Label Text="USDA FoodData Central" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*, Auto" ColumnSpacing="10">
+            <Entry Grid.Column="0" x:Name="SearchTermEntry" Placeholder="Căutați un aliment (ex: banana, chicken)" />
+            <Button Grid.Column="1" Text="Caută Online" Clicked="OnSearchApiClicked" BackgroundColor="#00796B" TextColor="White" />
+        </Grid>
+
+        <ActivityIndicator Grid.Row="2" x:Name="LoadingSpinner" IsRunning="False" IsVisible="False" Color="#00796B" />
+        <Label Grid.Row="3" x:Name="SearchStatusLabel" IsVisible="False" TextColor="#B71C1C" />
+
+        <CollectionView Grid.Row="4" x:Name="ApiResultsList">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:ApiFoodItem">
+                    <Border Stroke="#00796B" StrokeShape="RoundRectangle 8" Padding="10" Margin="0,5">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <VerticalStackLayout Grid.Column="0">
+                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="15" />
+                                <Label Text="{Binding Calories, StringFormat='Calorii: {0:F0} kcal per 100 g'}" TextColor="#D84315" />
+                                <Label Text="{Binding ProteinG, StringFormat='Proteine: {0:F1} g'}" FontSize="12" />
+                                <Label Text="{Binding CarbsG, StringFormat='Carbohidrați: {0:F1} g'}" FontSize="12" />
+                                <Label Text="{Binding FatG, StringFormat='Grăsimi: {0:F1} g'}" FontSize="12" />
+                            </VerticalStackLayout>
+                            <Button Grid.Column="1" Text="+ 100 g în jurnal" Clicked="OnAddApiItemToDb" CommandParameter="{Binding .}" HeightRequest="40" BackgroundColor="#388E3C" TextColor="White" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
