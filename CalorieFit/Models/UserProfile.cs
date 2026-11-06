@@ -18,4 +18,7 @@ public class UserProfile
     public string Gender { get; set; } = "Feminin";
     public string ActivityLevel { get; set; } = "Moderat";
     public int DailyCalorieTarget { get; set; } = 2000;
+    public double ProteinGoalGrams { get; set; } = 120;
+    public double CarbsGoalGrams { get; set; } = 250;
+    public double FatGoalGrams { get; set; } = 70;
 }

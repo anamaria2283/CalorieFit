@@ -30,7 +30,7 @@ public class MockRecipe
     public string Category { get; set; } = string.Empty;
     public int Calories { get; set; }
     public string CookingTime { get; set; } = string.Empty;
-    public string ImageUrl { get; set; } = "dotnet_bot.png";
+    public string ImageUrl { get; set; } = "healthy_meal.png";
     public string Ingredients { get; set; } = string.Empty;
     public string Instructions { get; set; } = string.Empty;
 }

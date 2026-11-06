@@ -6,7 +6,7 @@
              Title="Jurnal Alimentar">
     <Grid RowDefinitions="Auto, Auto, *" Padding="15" RowSpacing="10">
         <HorizontalStackLayout Grid.Row="0" Spacing="10">
-            <Image Source="dotnet_bot.png" WidthRequest="30" HeightRequest="30" />
+            <Image Source="healthy_meal.png" WidthRequest="30" HeightRequest="30" />
             <DatePicker x:Name="LogDatePicker" DateSelected="OnDateSelected" />
             <Button x:Name="SortCaloriesButton" Text="Sortează kcal ↓" Clicked="OnSortCaloriesClicked" />
         </HorizontalStackLayout>
@@ -25,6 +25,9 @@
                                 <Label Text="{Binding FoodName}" FontAttributes="Bold" FontSize="16" />
                                 <Label Text="{Binding MealType}" FontSize="12" TextColor="Gray" />
                                 <Label Text="{Binding Calories, StringFormat='{0:F0} kcal'}" TextColor="#E65100" />
+                                <Label Text="{Binding ProteinGrams, StringFormat='Proteine: {0:F1} g'}" FontSize="12" />
+                                <Label Text="{Binding CarbsGrams, StringFormat='Carbohidrați: {0:F1} g'}" FontSize="12" />
+                                <Label Text="{Binding FatGrams, StringFormat='Grăsimi: {0:F1} g'}" FontSize="12" />
                             </VerticalStackLayout>
                             <Button Grid.Column="1" Text="Șterge" Clicked="OnDeleteEntryClicked" CommandParameter="{Binding .}" BackgroundColor="#D32F2F" TextColor="White" HeightRequest="40" />
                         </Grid>

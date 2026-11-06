@@ -5,7 +5,7 @@
              Title="CalorieFit - Panou Principal">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
-            <Image Source="dotnet_bot.png" HeightRequest="90" HorizontalOptions="Center" />
+            <Image Source="healthy_meal.png" HeightRequest="90" HorizontalOptions="Center" />
             <Label x:Name="WelcomeLabel" Text="Bine ai venit!" FontSize="22" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 
             <Border Stroke="#4CAF50" StrokeShape="RoundRectangle 12" Padding="15">
@@ -13,6 +13,31 @@
                     <Label Text="Progres Calorii Astăzi" FontAttributes="Bold" FontSize="16" />
                     <Label x:Name="CalorieRatioLabel" Text="0 / 2000 kcal" />
                     <ProgressBar x:Name="CalorieProgressBar" Progress="0.0" ProgressColor="#4CAF50" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Stroke="#00897B" StrokeShape="RoundRectangle 12" Padding="15">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Obiectivele tale de azi" FontAttributes="Bold" FontSize="17" />
+                    <Label x:Name="MacroProgressSummaryLabel" Text="Completează obiectivele din pagina Obiective Macronutrienți." TextColor="#455A64" />
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label x:Name="ProteinProgressLabel" Text="Proteine: 0 / 120 g" />
+                        <ProgressBar x:Name="ProteinProgressBar" Progress="0" ProgressColor="#E53935" HeightRequest="12" />
+                        <Label x:Name="ProteinProgressMessage" Text="" FontSize="12" TextColor="#546E7A" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label x:Name="CarbsProgressLabel" Text="Carbohidrați: 0 / 250 g" />
+                        <ProgressBar x:Name="CarbsProgressBar" Progress="0" ProgressColor="#E53935" HeightRequest="12" />
+                        <Label x:Name="CarbsProgressMessage" Text="" FontSize="12" TextColor="#546E7A" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label x:Name="FatProgressLabel" Text="Grăsimi: 0 / 70 g" />
+                        <ProgressBar x:Name="FatProgressBar" Progress="0" ProgressColor="#E53935" HeightRequest="12" />
+                        <Label x:Name="FatProgressMessage" Text="" FontSize="12" TextColor="#546E7A" />
+                    </VerticalStackLayout>
                 </VerticalStackLayout>
             </Border>
 

@@ -39,7 +39,10 @@ public partial class FoodLogPage : ContentPage
         }
 
         FoodCollectionView.ItemsSource = items;
-        SummaryLabel.Text = $"Total: {items.Sum(x => x.Calories):F0} kcal | Proteine: {items.Sum(x => x.ProteinGrams):F0}g";
+        SummaryLabel.Text = $"Total: {items.Sum(x => x.Calories):F0} kcal | " +
+            $"P: {items.Sum(x => x.ProteinGrams):F1}g | " +
+            $"C: {items.Sum(x => x.CarbsGrams):F1}g | " +
+            $"G: {items.Sum(x => x.FatGrams):F1}g";
     }
 
     private async void OnDateSelected(object sender, DateChangedEventArgs e) => await RefreshList();

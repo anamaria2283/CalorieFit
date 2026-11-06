@@ -6,29 +6,40 @@
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                <Image Source="dotnet_bot.png" WidthRequest="30" HeightRequest="30" />
-                <Label Text="Distribuție Macronutrienți" FontSize="18" FontAttributes="Bold" />
+                <Image Source="healthy_meal.png" WidthRequest="30" HeightRequest="30" />
+                <Label Text="Analiză nutrițională" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" />
             </HorizontalStackLayout>
 
-            <!-- Grafic bara custom realizat din controale MAUI Native -->
-            <Border Stroke="#B0BEC5" StrokeShape="RoundRectangle 10" Padding="15">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Proteine (g)" />
-                    <BoxView x:Name="ProteinBar" Color="#4CAF50" HeightRequest="20" WidthRequest="10" HorizontalOptions="Start" />
-
-                    <Label Text="Carbohidrați (g)" />
-                    <BoxView x:Name="CarbsBar" Color="#FF9800" HeightRequest="20" WidthRequest="10" HorizontalOptions="Start" />
-
-                    <Label Text="Grăsimi (g)" />
-                    <BoxView x:Name="FatBar" Color="#E91E63" HeightRequest="20" WidthRequest="10" HorizontalOptions="Start" />
-                </VerticalStackLayout>
+            <Border Stroke="#B0BEC5" StrokeShape="RoundRectangle 10" Padding="12">
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                    <Label Text="Analizează ziua:" FontAttributes="Bold" VerticalOptions="Center" />
+                    <DatePicker x:Name="AnalysisDatePicker" DateSelected="OnAnalysisDateSelected" />
+                </HorizontalStackLayout>
             </Border>
 
-            <Label Text="Simulează Obiectiv Zilnic (calorii):" FontAttributes="Bold" />
-            <Slider x:Name="TargetSimSlider" Minimum="1200" Maximum="3500" Value="2000" ValueChanged="OnSimTargetChanged" />
-            <Label x:Name="TargetSimLabel" Text="Obiectiv simulat: 2000 kcal" />
+            <Label x:Name="SelectedDateLabel" Text="Totaluri pentru ziua selectată" FontSize="17" FontAttributes="Bold" />
 
-            <Button Text="Recalculează Grafic" Clicked="OnRefreshAnalyticsClicked" BackgroundColor="#37474F" TextColor="White" />
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+                <Border Grid.Column="0" Stroke="#B0BEC5" StrokeShape="RoundRectangle 10" Padding="8">
+                    <GraphicsView x:Name="MacroPieChart" HeightRequest="250" WidthRequest="250" />
+                </Border>
+                <Border Grid.Column="1" Stroke="#B0BEC5" StrokeShape="RoundRectangle 10" Padding="15">
+                    <VerticalStackLayout VerticalOptions="Center" Spacing="10">
+                        <Label Text="Total consumat" FontAttributes="Bold" FontSize="16" />
+                        <Label x:Name="CaloriesTotalLabel" Text="0 kcal" FontSize="20" TextColor="#E65100" />
+                        <Label x:Name="ProteinTotalLabel" Text="Proteine: 0 g" TextColor="#43A047" />
+                        <Label x:Name="CarbsTotalLabel" Text="Carbohidrați: 0 g" TextColor="#FB8C00" />
+                        <Label x:Name="FatTotalLabel" Text="Grăsimi: 0 g" TextColor="#D81B60" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Label Text="Evoluția proteinelor - ultimele 7 zile" FontSize="17" FontAttributes="Bold" />
+            <Border Stroke="#B0BEC5" StrokeShape="RoundRectangle 10" Padding="10">
+                <GraphicsView x:Name="ProteinTrendChart" HeightRequest="230" />
+            </Border>
+
+            <Label x:Name="NoDataLabel" Text="" TextColor="#616161" HorizontalTextAlignment="Center" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

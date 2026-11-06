@@ -5,24 +5,40 @@
              Title="Obiective Nutrienți">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
-            <Image Source="dotnet_bot.png" HeightRequest="60" HorizontalOptions="Center" />
-            <Label Text="Configurare Distribuție % Macronutrienți" FontSize="18" FontAttributes="Bold" />
+            <Image Source="healthy_meal.png" HeightRequest="60" HorizontalOptions="Center" />
+            <Label Text="Obiective zilnice în grame" FontSize="18" FontAttributes="Bold" />
+            <Label Text="Introdu cât vrei să consumi zilnic din fiecare macronutrient." TextColor="Gray" />
 
-            <Label x:Name="ProteinGoalLabel" Text="Proteine: 30%" />
-            <Slider x:Name="ProteinGoalSlider" Minimum="10" Maximum="60" Value="30" ValueChanged="OnSliderChanged" />
+            <Grid ColumnDefinitions="*,Auto">
+                <Label Text="Proteine (g/zi)" />
+                <Label Grid.Column="1" Text="{Binding Source={x:Reference ProteinGoalSlider}, Path=Value, StringFormat='{}{0:F0} g'}" FontAttributes="Bold" TextColor="#00897B" />
+            </Grid>
+            <Slider x:Name="ProteinGoalSlider" Minimum="0" Maximum="500" Value="120" MinimumTrackColor="#00897B" MaximumTrackColor="#CFD8DC" ThumbColor="#00695C" HeightRequest="36" />
+            <Grid ColumnDefinitions="*,*">
+                <Label Text="0 g" FontSize="12" TextColor="Gray" />
+                <Label Grid.Column="1" Text="500 g" FontSize="12" TextColor="Gray" HorizontalTextAlignment="End" />
+            </Grid>
 
-            <Label x:Name="CarbGoalLabel" Text="Carbohidrați: 40%" />
-            <Slider x:Name="CarbGoalSlider" Minimum="10" Maximum="70" Value="40" ValueChanged="OnSliderChanged" />
+            <Grid ColumnDefinitions="*,Auto">
+                <Label Text="Carbohidrați (g/zi)" />
+                <Label Grid.Column="1" Text="{Binding Source={x:Reference CarbsGoalSlider}, Path=Value, StringFormat='{}{0:F0} g'}" FontAttributes="Bold" TextColor="#FB8C00" />
+            </Grid>
+            <Slider x:Name="CarbsGoalSlider" Minimum="0" Maximum="500" Value="250" MinimumTrackColor="#FB8C00" MaximumTrackColor="#CFD8DC" ThumbColor="#EF6C00" HeightRequest="36" />
+            <Grid ColumnDefinitions="*,*">
+                <Label Text="0 g" FontSize="12" TextColor="Gray" />
+                <Label Grid.Column="1" Text="500 g" FontSize="12" TextColor="Gray" HorizontalTextAlignment="End" />
+            </Grid>
 
-            <Label x:Name="FatGoalLabel" Text="Grăsimi: 30%" />
-            <Slider x:Name="FatGoalSlider" Minimum="10" Maximum="50" Value="30" ValueChanged="OnSliderChanged" />
+            <Grid ColumnDefinitions="*,Auto">
+                <Label Text="Grăsimi (g/zi)" />
+                <Label Grid.Column="1" Text="{Binding Source={x:Reference FatGoalSlider}, Path=Value, StringFormat='{}{0:F0} g'}" FontAttributes="Bold" TextColor="#D81B60" />
+            </Grid>
+            <Slider x:Name="FatGoalSlider" Minimum="0" Maximum="500" Value="70" MinimumTrackColor="#D81B60" MaximumTrackColor="#CFD8DC" ThumbColor="#AD1457" HeightRequest="36" />
+            <Grid ColumnDefinitions="*,*">
+                <Label Text="0 g" FontSize="12" TextColor="Gray" />
+                <Label Grid.Column="1" Text="500 g" FontSize="12" TextColor="Gray" HorizontalTextAlignment="End" />
+            </Grid>
 
-            <HorizontalStackLayout Spacing="10">
-                <Label Text="Permite auto-echilibrare:" VerticalOptions="Center" />
-                <Switch IsToggled="True" />
-            </HorizontalStackLayout>
-
-            <ProgressBar Progress="1.0" ProgressColor="#00897B" />
             <Button Text="Aplică Obiective" Clicked="OnApplyGoalsClicked" BackgroundColor="#00897B" TextColor="White" />
         </VerticalStackLayout>
     </ScrollView>

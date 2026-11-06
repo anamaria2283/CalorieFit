@@ -6,7 +6,7 @@
              Title="Căutare Alimente (API)">
     <Grid RowDefinitions="Auto, Auto, Auto, Auto, *" Padding="15" RowSpacing="10">
         <HorizontalStackLayout Grid.Row="0" Spacing="10">
-            <Image Source="dotnet_bot.png" WidthRequest="35" HeightRequest="35" />
+            <Image Source="healthy_meal.png" WidthRequest="35" HeightRequest="35" />
             <Label Text="USDA FoodData Central" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" />
         </HorizontalStackLayout>
 

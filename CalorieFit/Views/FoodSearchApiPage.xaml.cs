@@ -101,6 +101,13 @@ public partial class FoodSearchApiPage : ContentPage
         };
 
         await _dbService.AddFoodEntryAsync(entry);
-        await DisplayAlertAsync("Adăugat", $"{item.Name} ({grams} g) a fost salvat în jurnal!", "OK");
+        await DisplayAlertAsync(
+            "Adăugat",
+            $"{item.Name} ({grams:F0} g) a fost salvat în jurnal!\n\n" +
+            $"Calorii: {entry.Calories:F0} kcal\n" +
+            $"Proteine: {entry.ProteinGrams:F1} g\n" +
+            $"Carbohidrați: {entry.CarbsGrams:F1} g\n" +
+            $"Grăsimi: {entry.FatGrams:F1} g",
+            "OK");
     }
 }

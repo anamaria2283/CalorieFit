@@ -22,6 +22,7 @@ public class DatabaseService
         await _database.CreateTableAsync<FoodEntry>();
         await _database.CreateTableAsync<WaterLog>();
         await _database.CreateTableAsync<DayReflection>();
+        await EnsureUserProfileGoalColumnsAsync();
 
         // Initializare profil implicit daca baza e goala
         var profile = await _database.Table<UserProfile>().FirstOrDefaultAsync();
@@ -35,6 +36,27 @@ public class DatabaseService
                 Age = 22,
                 DailyCalorieTarget = 2100
             });
+        }
+    }
+
+    private async Task EnsureUserProfileGoalColumnsAsync()
+    {
+        var columns = await _database!.GetTableInfoAsync("UserProfile");
+        var existingColumns = columns.Select(column => column.Name).ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        if (!existingColumns.Contains(nameof(UserProfile.ProteinGoalGrams)))
+        {
+            await _database.ExecuteAsync("ALTER TABLE UserProfile ADD COLUMN ProteinGoalGrams REAL NOT NULL DEFAULT 120");
+        }
+
+        if (!existingColumns.Contains(nameof(UserProfile.CarbsGoalGrams)))
+        {
+            await _database.ExecuteAsync("ALTER TABLE UserProfile ADD COLUMN CarbsGoalGrams REAL NOT NULL DEFAULT 250");
+        }
+
+        if (!existingColumns.Contains(nameof(UserProfile.FatGoalGrams)))
+        {
+            await _database.ExecuteAsync("ALTER TABLE UserProfile ADD COLUMN FatGoalGrams REAL NOT NULL DEFAULT 70");
         }
     }
 
@@ -58,6 +80,16 @@ public class DatabaseService
         await InitAsync();
         var start = date.Date;
         var end = date.Date.AddDays(1);
+        return await _database!.Table<FoodEntry>()
+                               .Where(f => f.DateLogged >= start && f.DateLogged < end)
+                               .ToListAsync();
+    }
+
+    public async Task<List<FoodEntry>> GetFoodEntriesBetweenDatesAsync(DateTime startDate, DateTime endDate)
+    {
+        await InitAsync();
+        var start = startDate.Date;
+        var end = endDate.Date.AddDays(1);
         return await _database!.Table<FoodEntry>()
                                .Where(f => f.DateLogged >= start && f.DateLogged < end)
                                .ToListAsync();

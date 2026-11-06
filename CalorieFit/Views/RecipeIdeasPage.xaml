@@ -6,7 +6,7 @@
              Title="Idei de Rețete">
     <Grid RowDefinitions="Auto, Auto, Auto, Auto, *" Padding="15" RowSpacing="10">
         <HorizontalStackLayout Grid.Row="0" Spacing="10">
-            <Image Source="dotnet_bot.png" WidthRequest="30" HeightRequest="30" />
+            <Image Source="healthy_meal.png" WidthRequest="30" HeightRequest="30" />
             <Label Text="Recomandări Nutriționale Sănătoase" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" />
         </HorizontalStackLayout>
 

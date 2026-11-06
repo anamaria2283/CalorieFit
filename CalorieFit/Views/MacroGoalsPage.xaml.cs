@@ -1,31 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using CalorieFit.Services;
 
 namespace CalorieFit.Views;
 
 public partial class MacroGoalsPage : ContentPage
 {
-    public MacroGoalsPage()
+    private readonly DatabaseService _dbService;
+
+    public MacroGoalsPage(DatabaseService dbService)
     {
         InitializeComponent();
+        _dbService = dbService;
     }
 
-    private void OnSliderChanged(object sender, ValueChangedEventArgs e)
+    protected override async void OnAppearing()
     {
-        ProteinGoalLabel.Text = $"Proteine: {ProteinGoalSlider.Value:F0}%";
-        CarbGoalLabel.Text = $"Carbohidrați: {CarbGoalSlider.Value:F0}%";
-        FatGoalLabel.Text = $"Grăsimi: {FatGoalSlider.Value:F0}%";
+        base.OnAppearing();
+        var profile = await _dbService.GetProfileAsync();
+        ProteinGoalSlider.Value = Math.Clamp(profile.ProteinGoalGrams, 0, 500);
+        CarbsGoalSlider.Value = Math.Clamp(profile.CarbsGoalGrams, 0, 500);
+        FatGoalSlider.Value = Math.Clamp(profile.FatGoalGrams, 0, 500);
     }
 
     private async void OnApplyGoalsClicked(object sender, EventArgs e)
     {
-        double total = ProteinGoalSlider.Value + CarbGoalSlider.Value + FatGoalSlider.Value;
-        if (Math.Abs(total - 100) > 5)
-        {
-            await DisplayAlert("Atenție", $"Suma procentelor este {total:F0}%. Recomandat este să fie ~100%.", "OK");
-            return;
-        }
-        await DisplayAlert("Succes", "Obiectivele macronutrienților au fost actualizate!", "OK");
+        var profile = await _dbService.GetProfileAsync();
+        profile.ProteinGoalGrams = ProteinGoalSlider.Value;
+        profile.CarbsGoalGrams = CarbsGoalSlider.Value;
+        profile.FatGoalGrams = FatGoalSlider.Value;
+        await _dbService.SaveProfileAsync(profile);
+
+        await DisplayAlertAsync("Succes", "Obiectivele zilnice au fost salvate.", "OK");
     }
+
 }

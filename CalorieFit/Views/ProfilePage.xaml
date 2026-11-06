@@ -5,7 +5,7 @@
              Title="Profil &amp; Obiective">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="10">
-            <Image Source="dotnet_bot.png" HeightRequest="70" HorizontalOptions="Center" />
+            <Image Source="healthy_meal.png" HeightRequest="70" HorizontalOptions="Center" />
             <Label Text="Date Personale" FontSize="18" FontAttributes="Bold" />
 
             <Label Text="Nume:" />

@@ -43,7 +43,9 @@ public partial class ProfilePage : ContentPage
         int calculatedCalories = (int)(10 * weight + 6.25 * height - 5 * age + 500);
 
         var p = await _dbService.GetProfileAsync();
-        p.Name = NameEntry.Text;
+        p.Name = string.IsNullOrWhiteSpace(NameEntry.Text)
+            ? "Utilizator CalorieFit"
+            : NameEntry.Text.Trim();
         p.WeightKg = weight;
         p.HeightCm = height;
         p.Age = age;

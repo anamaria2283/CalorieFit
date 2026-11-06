@@ -4,7 +4,7 @@
              x:Class="CalorieFit.Views.WaterTrackerPage"
              Title="Monitorizare Apă">
     <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Center">
-        <Image Source="dotnet_bot.png" HeightRequest="80" HorizontalOptions="Center" />
+        <Image Source="healthy_meal.png" HeightRequest="80" HorizontalOptions="Center" />
         <Label x:Name="WaterStatusLabel" Text="Apă băută azi: 0 ml / 2500 ml" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 
         <ProgressBar x:Name="WaterBar" Progress="0.0" ProgressColor="#1E88E5" HeightRequest="15" />
