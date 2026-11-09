@@ -28,8 +28,6 @@ public partial class RecipeIdeasPage : ContentPage
         ApplyFilters();
     }
 
-    private async void OnLoadRecipesClicked(object sender, EventArgs e) => await LoadRecipes();
-
     private void OnRecipeSearchChanged(object sender, TextChangedEventArgs e) => ApplyFilters();
 
     private void OnCategoryChanged(object sender, EventArgs e)

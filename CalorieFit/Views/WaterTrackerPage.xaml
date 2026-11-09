@@ -14,11 +14,6 @@
 
         <Button Text="Adaugă porția de apă" Clicked="OnAddWaterClicked" BackgroundColor="#1E88E5" TextColor="White" />
 
-        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
-            <Label Text="Notificări hidratare active:" VerticalOptions="Center" />
-            <Switch IsToggled="True" />
-        </HorizontalStackLayout>
-
         <Button Text="Resetează ziua" Clicked="OnResetWaterClicked" BackgroundColor="#E53935" TextColor="White" />
     </VerticalStackLayout>
 </ContentPage>

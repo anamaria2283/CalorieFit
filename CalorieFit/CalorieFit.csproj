@@ -10,22 +10,18 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
-		<!-- Identificatori aplicatie -->
 		<ApplicationTitle>CalorieFit</ApplicationTitle>
 		<ApplicationId>com.echipa15.caloriefit</ApplicationId>
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
 
-		<!-- Permite rularea directa pe Windows -->
 		<WindowsPackageType>None</WindowsPackageType>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<!-- Pictograma si splash screen -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
-		<!-- Imagini si fonturi -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\healthy_meal.png" Resize="True" BaseSize="420,300" />
 		<MauiFont Include="Resources\Fonts\*" />

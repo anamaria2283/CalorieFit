@@ -4,7 +4,7 @@
              xmlns:models="clr-namespace:CalorieFit.Models"
              x:Class="CalorieFit.Views.RecipeIdeasPage"
              Title="Idei de Rețete">
-    <Grid RowDefinitions="Auto, Auto, Auto, Auto, *" Padding="15" RowSpacing="10">
+    <Grid RowDefinitions="Auto, Auto, Auto, *" Padding="15" RowSpacing="10">
         <HorizontalStackLayout Grid.Row="0" Spacing="10">
             <Image Source="healthy_meal.png" WidthRequest="30" HeightRequest="30" />
             <Label Text="Recomandări Nutriționale Sănătoase" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" />
@@ -20,9 +20,8 @@
                 <x:String>Gustare</x:String>
             </Picker.Items>
         </Picker>
-        <Button Grid.Row="3" Text="Încarcă Rețete Noi" Clicked="OnLoadRecipesClicked" BackgroundColor="#FB8C00" TextColor="White" />
 
-        <CollectionView Grid.Row="4" x:Name="RecipesList" SelectionMode="Single" SelectionChanged="OnRecipeSelected">
+        <CollectionView Grid.Row="3" x:Name="RecipesList" SelectionMode="Single" SelectionChanged="OnRecipeSelected">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:MockRecipe">
                     <Border Stroke="#FB8C00" StrokeShape="RoundRectangle 8" Padding="12" Margin="0,5">

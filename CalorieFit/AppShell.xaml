@@ -7,7 +7,6 @@
     FlyoutBehavior="Locked"
     Title="CalorieFit">
 
-    <!-- Header vizual pentru meniul lateral -->
     <Shell.FlyoutHeader>
         <Grid HeightRequest="120" BackgroundColor="#2E7D32" Padding="15">
             <VerticalStackLayout VerticalOptions="Center" Spacing="4">
@@ -18,16 +17,15 @@
         </Grid>
     </Shell.FlyoutHeader>
 
-    <!-- Toate cele 10 pagini listate direct in meniu -->
     <FlyoutItem Title="1. Dashboard Principal" Icon="healthy_meal.png">
         <ShellContent ContentTemplate="{DataTemplate views:DashboardPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="2. Jurnal Alimentar (SQLite)" Icon="healthy_meal.png">
+    <FlyoutItem Title="2. Jurnal Alimentar" Icon="healthy_meal.png">
         <ShellContent ContentTemplate="{DataTemplate views:FoodLogPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="3. Adăugare Masă (Picker)" Icon="healthy_meal.png">
+    <FlyoutItem Title="3. Adăugare Masă" Icon="healthy_meal.png">
         <ShellContent ContentTemplate="{DataTemplate views:AddMealPage}" />
     </FlyoutItem>
 
@@ -39,11 +37,11 @@
         <ShellContent ContentTemplate="{DataTemplate views:AnalyticsPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="6. Căutare Online (API REST)" Icon="healthy_meal.png">
+    <FlyoutItem Title="6. Căutare Online" Icon="healthy_meal.png">
         <ShellContent ContentTemplate="{DataTemplate views:FoodSearchApiPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="7. Rețete Sănătoase (JSON)" Icon="healthy_meal.png">
+    <FlyoutItem Title="7. Rețete Sănătoase" Icon="healthy_meal.png">
         <ShellContent ContentTemplate="{DataTemplate views:RecipeIdeasPage}" />
     </FlyoutItem>
 

@@ -89,6 +89,10 @@ public partial class SettingsPage : ContentPage
 
     private async void OnAboutClicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Despre", "Aplicația CalorieFit\nProiect realizat de Echipa 15 (.NET 10.0 MAUI).", "OK");
+        await DisplayAlert("Despre CalorieFit",
+            "CalorieFit te ajută să-ți urmărești alimentația și obiceiurile zilnice pentru un stil de viață mai echilibrat.\n\n" +
+            "Poți înregistra mesele și valorile lor nutriționale, inclusiv prin căutarea alimentelor în baza USDA, și poți urmări progresul zilnic pentru calorii și macronutrienți. Aplicația include și monitorizarea consumului de apă, statistici și grafice nutriționale, idei de rețete sănătoase, un profil cu calculator BMR și un jurnal în care îți poți nota cum ți-a fost ziua.\n\n" +
+            "Datele și preferințele pot fi gestionate din Setări.\nProiect realizat de Echipa 15: Ailioaei Sorina-Elena, Babeș Ana-Maria-Cristina, Baicu Alexandra-Paula, Banaurs Maria-Magdalena.",
+            "OK");
     }
 }

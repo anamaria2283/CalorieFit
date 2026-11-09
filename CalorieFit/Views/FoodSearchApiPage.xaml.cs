@@ -67,6 +67,20 @@ public partial class FoodSearchApiPage : ContentPage
             return;
         }
 
+        var mealType = await DisplayActionSheetAsync(
+            "Alegeți masa",
+            "Anulează",
+            null,
+            "Mic Dejun",
+            "Prânz",
+            "Cină",
+            "Gustare");
+
+        if (string.IsNullOrEmpty(mealType) || mealType == "Anulează")
+        {
+            return;
+        }
+
         var amountText = await DisplayPromptAsync(
             "Cantitate",
             $"Introduceți cantitatea de {item.Name} în grame:",
@@ -96,7 +110,7 @@ public partial class FoodSearchApiPage : ContentPage
             ProteinGrams = item.ProteinG * multiplier,
             CarbsGrams = item.CarbsG * multiplier,
             FatGrams = item.FatG * multiplier,
-            MealType = "Gustare",
+            MealType = mealType,
             DateLogged = DateTime.Today
         };
 
